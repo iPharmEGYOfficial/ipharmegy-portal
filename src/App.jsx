@@ -1,6 +1,6 @@
 ﻿import { useAuth } from "./auth/useAuth";
 import Layout from "./layout/Layout";
-import AccessDenied from "./components/AccessDenied";
+import AccessDenied from "./components/AccessDenied.jsx";
 import "./App.css";
 
 export default function App() {
@@ -21,3 +21,4 @@ export default function App() {
     </Layout>
   );
 }
+
