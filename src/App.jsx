@@ -1,24 +1,23 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useAuth } from "./auth/useAuth";
+import Layout from "./layout/Layout";
+import AccessDenied from "./components/AccessDenied";
 import "./App.css";
 
-function App() {
+export default function App() {
+  const { loading, appMode, identity, role, allowed, reason } = useAuth();
 
-  const [mode, setMode] = useState("portal");
+  if (loading) {
+    return <div className="app-container"><h1>Loading...</h1></div>;
+  }
 
-  useEffect(() => {
-    const currentMode = window.appMode || "portal";
-    setMode(currentMode);
-
-    document.title = "iPharmEGY - " + currentMode.toUpperCase();
-    document.body.className = currentMode;
-  }, []);
+  if (!allowed) {
+    return <AccessDenied appMode={appMode} role={role} reason={reason} />;
+  }
 
   return (
-    <div className="app-container">
-      <h1>iPharmEGY {mode.toUpperCase()}</h1>
-      <p>Unified React Portal System</p>
-    </div>
+    <Layout role={role} identity={identity} appMode={appMode}>
+      <h1>Dashboard</h1>
+      <p>Welcome to iPharmEGY {appMode.toUpperCase()} Module</p>
+    </Layout>
   );
 }
-
-export default App;
