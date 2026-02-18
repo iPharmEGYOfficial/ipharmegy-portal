@@ -1,0 +1,18 @@
+﻿{
+  "version": 1,
+  "roles": ["admin","pos","inventory","academy","cloud","viewer"],
+
+  "rules": [
+    { "match": { "email": "admin@ipharmegy.com" }, "role": "admin" },
+    { "match": { "email": "HithmOsama2020@gmail.com" }, "role": "viewer" }
+  ],
+
+  "byApp": {
+    "admin":     ["admin"],
+    "pos":       ["admin","pos"],
+    "inventory": ["admin","inventory"],
+    "academy":   ["admin","academy"],
+    "cloud":     ["admin","cloud"],
+    "portal":    ["admin","pos","inventory","academy","cloud","viewer"]
+  }
+}
