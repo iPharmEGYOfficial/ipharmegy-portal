@@ -1,23 +1,24 @@
-﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Shell from "./layout/Shell";
-import Dashboard from "./pages/Dashboard";
-import Clients from "./pages/Clients";
-import Billing from "./pages/Billing";
-import Api from "./pages/Api";
-import Settings from "./pages/Settings";
+﻿import { useEffect, useState } from "react";
+import "./App.css";
 
-export default function App() {
+function App() {
+
+  const [mode, setMode] = useState("portal");
+
+  useEffect(() => {
+    const currentMode = window.appMode || "portal";
+    setMode(currentMode);
+
+    document.title = "iPharmEGY - " + currentMode.toUpperCase();
+    document.body.className = currentMode;
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Shell appName="iPharmEGY Cloud" badge="Cloud v1" />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/billing" element={<Billing />} />
-          <Route path="/api" element={<Api />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="app-container">
+      <h1>iPharmEGY {mode.toUpperCase()}</h1>
+      <p>Unified React Portal System</p>
+    </div>
   );
 }
+
+export default App;
