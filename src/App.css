@@ -1,35 +1,59 @@
-﻿body.portal {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: white;
+﻿.module-card {
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.9);
+  color: #0f172a;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  max-width: 900px;
 }
 
-body.admin {
-  background: linear-gradient(135deg, #1e3a8a, #1e40af);
-  color: white;
+.module-card h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 800;
 }
 
-body.cloud {
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
-  color: white;
+.module-card p {
+  margin-bottom: 25px;
+  color: rgba(15,23,42,.65);
 }
 
-body.academy {
-  background: linear-gradient(135deg, #6b21a8, #9333ea);
-  color: white;
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 16px;
+  margin-bottom: 25px;
 }
 
-body.inventory {
-  background: linear-gradient(135deg, #166534, #22c55e);
-  color: white;
-}
-
-body.pos {
-  background: linear-gradient(135deg, #9a3412, #f97316);
-  color: white;
-}
-
-.app-container {
+.stat-box {
+  background: rgba(15,23,42,.05);
+  padding: 16px;
+  border-radius: 12px;
   text-align: center;
-  margin-top: 20vh;
-  font-size: 24px;
 }
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.stat-label {
+  font-size: 13px;
+  opacity: .6;
+}
+
+.primary-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+.admin .primary-btn { background: #1e40af; }
+.pos .primary-btn { background: #ea580c; }
+.inventory .primary-btn { background: #16a34a; }
+.academy .primary-btn { background: #7e22ce; }
+.cloud .primary-btn { background: #0f766e; }
