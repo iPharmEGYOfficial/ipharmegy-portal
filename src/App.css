@@ -428,5 +428,5 @@ body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
 @media (max-width: 768px){
   .container{ padding: 0 14px 34px; }
   .footerInner{ flex-direction: column; align-items: flex-start; }
-}
+
 
