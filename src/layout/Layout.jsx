@@ -12,8 +12,19 @@ export default function Layout({ children, role, identity, appMode }) {
       <div className="main">
         <Topbar role={role} identity={identity} appMode={appMode} />
         <div className="content">{children}</div>
-        <div className="footer">{new Date().getFullYear()} iPharmEGY Unified Platform</div>
+        <div className="footer">
+  <div className="footerLeft">
+     {new Date().getFullYear()} iPharmEGY Unified Platform
+  </div>
+
+  <div className="footerRight">
+    <span>Status: Online</span>
+    <span>Version 1.0.0</span>
+    <span>Enterprise Mode</span>
+  </div>
+</div>
       </div>
     </div>
   );
 }
+
