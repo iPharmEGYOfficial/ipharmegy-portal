@@ -27,8 +27,9 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ErrorBoundary><App /></ErrorBoundary>
+    <ErrorBoundary><ErrorBoundary><App /></ErrorBoundary></ErrorBoundary>
   </StrictMode>,
 )
+
 
 
