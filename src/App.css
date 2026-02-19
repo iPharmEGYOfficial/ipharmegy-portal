@@ -161,3 +161,89 @@ body.cloud { background: linear-gradient(135deg, #0f766e, #14b8a6); color:#fff; 
 body.academy { background: linear-gradient(135deg, #6b21a8, #9333ea); color:#fff; }
 body.inventory { background: linear-gradient(135deg, #166534, #22c55e); color:#fff; }
 body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
+/* =========================
+   AccessDenied (Enterprise)
+========================= */
+.denyWrap{
+  min-height: calc(100vh - 140px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 30px 16px;
+}
+
+.denyCard{
+  width: min(920px, 100%);
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.12);
+  border-radius: 22px;
+  padding: 18px;
+  color: #0f172a;
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+.denyTop{
+  display:flex;
+  justify-content:space-between;
+  gap: 12px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+
+.denyTitle{
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: .2px;
+}
+
+.denySub{
+  margin-top: 6px;
+  opacity: .78;
+  line-height: 1.6;
+}
+
+.denyPill{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: rgba(127,29,29,.95);
+  background: rgba(239,68,68,.12);
+  border: 1px solid rgba(239,68,68,.20);
+}
+
+.denyReason{
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(15,23,42,.05);
+  border: 1px solid rgba(15,23,42,.06);
+}
+
+.denyLabel{
+  font-weight: 950;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.denyText{
+  margin-top: 8px;
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.denyActions{
+  margin-top: 14px;
+  display:flex;
+  gap: 10px;
+  flex-wrap:wrap;
+}
+
+.denyFoot{
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: .7;
+}
