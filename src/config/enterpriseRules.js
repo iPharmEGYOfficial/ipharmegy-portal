@@ -1,7 +1,7 @@
 ﻿export function canAccessModule(role, moduleKey) {
   if (role === "admin") return true;
-  // role name equals module key: pos/inventory/academy/cloud
-  return role === moduleKey;
+  if (role === "viewer") return true; // viewer is read-only but allowed to view
+  return role === moduleKey; // pos/inventory/academy/cloud
 }
 
 export function canSeeCard({ appMode, role, moduleKey }) {
@@ -17,3 +17,4 @@ export function canSeeCard({ appMode, role, moduleKey }) {
 export function isViewer(role){
   return role === "viewer";
 }
+
