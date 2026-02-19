@@ -247,3 +247,116 @@ body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
   font-size: 12px;
   opacity: .7;
 }
+/* =========================
+   Subdomain Dashboard (no sidebar)
+========================= */
+.layout.noSide .content{ padding: 22px; }
+.layout.noSide .main{ max-width: 1260px; margin: 0 auto; }
+
+.dash{ max-width: 1180px; margin: 0 auto; }
+
+.hero{
+  display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.heroKicker{ font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity:.85; }
+.heroTitle{ margin-top: 8px; font-size: 28px; font-weight: 950; letter-spacing:.2px; }
+.heroSub{ margin-top: 8px; opacity:.85; line-height:1.7; max-width: 720px; }
+
+.heroRight{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+.roleBadge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: 12px;
+}
+
+.secHead{ display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin: 18px 0 10px; }
+.secTitle{ font-weight: 950; font-size: 14px; letter-spacing:.08em; text-transform: uppercase; }
+.muted{ opacity:.75; font-size: 12px; }
+
+.kpiGrid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+.kpi{
+  grid-column: span 3;
+  background: rgba(255,255,255,.92);
+  color:#0f172a;
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 18px 42px rgba(0,0,0,.12);
+}
+.kpiVal{ font-weight: 950; font-size: 18px; }
+.kpiLbl{ margin-top: 8px; opacity:.65; font-size: 12px; }
+
+@media (max-width: 1100px){ .kpi{ grid-column: span 6; } }
+@media (max-width: 700px){ .kpi{ grid-column: span 12; } }
+
+.actionGrid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+.action{
+  grid-column: span 4;
+  text-decoration:none;
+  background: rgba(255,255,255,.92);
+  color:#0f172a;
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 18px 42px rgba(0,0,0,.12);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.action:hover{ transform: translateY(-2px); box-shadow: 0 22px 52px rgba(0,0,0,.16); }
+.actionTop{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+.actionTitle{ font-weight: 950; font-size: 16px; }
+.actionHint{ margin-top: 10px; opacity:.7; line-height:1.6; font-size: 13px; }
+.actionPill{
+  border:1px solid rgba(15,23,42,.10);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+@media (max-width: 1100px){ .action{ grid-column: span 6; } }
+@media (max-width: 700px){ .action{ grid-column: span 12; } }
+
+.activity{
+  background: rgba(255,255,255,.92);
+  color:#0f172a;
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 18px 42px rgba(0,0,0,.12);
+}
+.actRow{
+  display:flex; align-items:center; gap:10px;
+  padding: 10px 10px;
+  border-radius: 12px;
+}
+.actRow:hover{ background: rgba(15,23,42,.04); }
+.actDot{ width:10px; height:10px; border-radius:999px; background: rgba(15,23,42,.35); }
+.actTxt{ flex:1; opacity:.9; }
+.actTime{ opacity:.6; font-size: 12px; }
+
+/* make Topbar centered nicely when no sidebar */
+.layout.noSide .topbar{
+  border-radius: 16px;
+  margin: 14px 16px 0;
+}
+.layout.noSide .footer{
+  margin: 0 16px 14px;
+  opacity: .9;
+}
