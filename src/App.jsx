@@ -1,6 +1,7 @@
 ﻿import { useAuth } from "./auth/useAuth";
 import Layout from "./layout/Layout";
 import AccessDenied from "./components/AccessDenied.jsx";
+import Skeleton from "./components/Skeleton";
 import "./App.css";
 
 import { MODULES, BRAND } from "./config/modules";
@@ -99,5 +100,6 @@ export default function App() {
     </Layout>
   );
 }
+
 
 
