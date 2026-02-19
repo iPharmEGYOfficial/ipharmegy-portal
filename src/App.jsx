@@ -70,9 +70,7 @@ export default function App() {
 
   if (loading) { return <Layout role={role} identity={identity} appMode={appMode}><Skeleton /></Layout>; }
 
-  if (!allowed) {
-    return <AccessDenied appMode={appMode} role={role} reason={reason} />;
-  }
+  if (!allowed) { return <Layout role={role} identity={identity} appMode={appMode}><AccessDenied appMode={appMode} role={role} reason={reason} /></Layout>; }
 
   const visible = MODULES.filter(m => canSeeCard({ appMode, role, moduleKey: m.key }));
 
@@ -100,6 +98,7 @@ export default function App() {
     </Layout>
   );
 }
+
 
 
 
