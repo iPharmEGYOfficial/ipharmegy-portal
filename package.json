@@ -1,4 +1,4 @@
-{
+﻿{
     "name":  "portal",
     "private":  true,
     "version":  "0.0.0",
@@ -26,6 +26,6 @@
                             "vite":  "^7.3.1"
                         },
     "engines":  {
-                    "node":  "\u003e=20"
+                    "node":  "\u003e=20 \u003c21"
                 }
 }
