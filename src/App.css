@@ -1,59 +1,107 @@
-﻿.module-card {
-  padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.9);
-  color: #0f172a;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  max-width: 900px;
+﻿.page { max-width: 1180px; margin: 0 auto; }
+
+.pageHead{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:14px; flex-wrap:wrap; margin-bottom:18px;
 }
 
-.module-card h2 {
-  margin-bottom: 10px;
-  font-size: 28px;
-  font-weight: 800;
+.pageTitle{ font-size:28px; font-weight:950; letter-spacing:.3px; }
+.pageSub{ margin-top:6px; opacity:.85; line-height:1.6; }
+.pageNote{
+  opacity:.85; font-size:12px; padding:8px 10px; border-radius:12px;
+  background: rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.14);
 }
 
-.module-card p {
-  margin-bottom: 25px;
-  color: rgba(15,23,42,.65);
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:14px;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-  gap: 16px;
-  margin-bottom: 25px;
-}
-
-.stat-box {
-  background: rgba(15,23,42,.05);
+.card{
+  grid-column: span 6;
+  background: rgba(255,255,255,.90);
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 18px;
   padding: 16px;
-  border-radius: 12px;
-  text-align: center;
+  color:#0f172a;
+  box-shadow: 0 18px 42px rgba(0,0,0,.14);
 }
 
-.stat-value {
-  font-size: 20px;
+@media (max-width: 900px){
+  .card{ grid-column: span 12; }
+}
+
+.cardTop{
+  display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
+}
+
+.cardTitle{ font-size:18px; font-weight:950; }
+.cardDesc{ margin-top:6px; color: rgba(15,23,42,.60); line-height:1.6; font-size:13px; }
+
+.pill{
+  border:1px solid rgba(15,23,42,.10);
+  background: rgba(15,23,42,.06);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
   font-weight: 900;
+  white-space:nowrap;
 }
 
-.stat-label {
-  font-size: 13px;
-  opacity: .6;
+.cardRow{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:10px;
+  margin-top:14px;
 }
 
-.primary-btn {
-  padding: 12px 20px;
-  border: none;
+.mini{
+  grid-column: span 4;
+  background: rgba(15,23,42,.05);
+  border: 1px solid rgba(15,23,42,.06);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+@media (max-width: 900px){
+  .mini{ grid-column: span 12; }
+}
+
+.miniVal{ font-weight:950; font-size:14px; }
+.miniLbl{ margin-top:6px; opacity:.65; font-size:12px; }
+
+.cardActions{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  margin-top:14px;
+}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 10px 14px;
   border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:900;
+  border:1px solid rgba(255,255,255,.18);
 }
 
-.admin .primary-btn { background: #1e40af; }
-.pos .primary-btn { background: #ea580c; }
-.inventory .primary-btn { background: #16a34a; }
-.academy .primary-btn { background: #7e22ce; }
-.cloud .primary-btn { background: #0f766e; }
+.btn.ghost{
+  background: rgba(15,23,42,.10);
+  color:#0f172a;
+  border:1px solid rgba(15,23,42,.12);
+}
+
+.hint{
+  font-size:12px;
+  opacity:.75;
+}
+
+/* Keep your body.<mode> gradients (do not remove) */
+body.portal { background: linear-gradient(135deg, #0f172a, #1e293b); color:#fff; }
+body.admin { background: linear-gradient(135deg, #1e3a8a, #1e40af); color:#fff; }
+body.cloud { background: linear-gradient(135deg, #0f766e, #14b8a6); color:#fff; }
+body.academy { background: linear-gradient(135deg, #6b21a8, #9333ea); color:#fff; }
+body.inventory { background: linear-gradient(135deg, #166534, #22c55e); color:#fff; }
+body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
