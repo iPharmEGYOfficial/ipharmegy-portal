@@ -410,3 +410,22 @@ body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
   .container{ padding: 0 14px 34px; }
   .footerInner{ flex-direction: column; align-items: flex-start; }
 }
+/* ===== iOS Safe-Area Fix (Header/Footer visible) ===== */
+
+/* Fix sticky header being hidden under iOS top UI */
+.topbarWrap{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Ensure footer not hidden behind iOS home indicator */
+.footerFull{
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}
+
+/* Give page content breathing so footer isn't "cut" */
+.main{
+  padding-bottom: env(safe-area-inset-bottom);
+}
