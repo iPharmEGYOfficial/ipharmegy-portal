@@ -429,3 +429,37 @@ body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
 .main{
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* ===== iOS SAFE-AREA FIX (header/footer visible on iPhone) ===== */
+:root{
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+}
+
+/* Make the main shell use the real dynamic viewport */
+html, body { height: 100%; }
+.main{
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content takes remaining space so footer stays at bottom naturally */
+.contentWrap{ flex: 1 1 auto; }
+
+/* Header: push below notch / dynamic island */
+.topbarWrap{
+  top: var(--sat);
+  padding-top: var(--sat);
+}
+
+/* Footer: add extra bottom padding so Safari bottom bar doesn't cover it */
+.footerFull{
+  padding-bottom: calc(14px + var(--sab));
+}
+
+/* Extra breathing room at the very bottom */
+.main{
+  padding-bottom: var(--sab);
+}
+
