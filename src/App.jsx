@@ -67,9 +67,7 @@ function ModuleCard({ m, appMode, role }) {
 export default function App() {
   const { loading, appMode, identity, role, allowed, reason } = useAuth();
 
-  if (loading) {
-    return <div className="app-container"><h1>Loading</h1></div>;
-  }
+  if (loading) { return <Layout role={role} identity={identity} appMode={appMode}><Skeleton /></Layout>; }
 
   if (!allowed) {
     return <AccessDenied appMode={appMode} role={role} reason={reason} />;
@@ -101,4 +99,5 @@ export default function App() {
     </Layout>
   );
 }
+
 

@@ -2,6 +2,15 @@
 import { MODULES } from "../config/modules";
 import { canAccessModule } from "../config/enterpriseRules";
 
+function isActiveLink(href){
+  try {
+    const u = new URL(href);
+    return window.location.hostname.toLowerCase() === u.hostname.toLowerCase();
+  } catch {
+    return false;
+  }
+}
+
 export default function Sidebar({ role, appMode }) {
   const visible = appMode === "portal"
     ? MODULES.filter(m => role === "admin" || role === "viewer" || canAccessModule(role, m.key))
@@ -9,34 +18,39 @@ export default function Sidebar({ role, appMode }) {
 
   return (
     <div className="sidebar">
-      <div style={{display:"flex", alignItems:"center", gap:10, marginBottom:14}}>
-        <div style={{
-          width:38,height:38,borderRadius:12,display:"grid",placeItems:"center",
-          background:"rgba(255,255,255,.15)",fontWeight:900
-        }}>iP</div>
+      <div className="brandRow">
+        <div className="brandMark">iP</div>
         <div>
-          <div style={{fontWeight:950, lineHeight:1}}>iPharmEGY</div>
-          <div style={{opacity:.75, fontSize:12, marginTop:2}}>
-            {appMode.toUpperCase()}  Role: {role}
+          <div className="brandName">iPharmEGY</div>
+          <div className="brandMeta">
+            <span className="dot ok" /> {appMode.toUpperCase()}
+            <span className="sep"></span>
+            Role: <b>{role}</b>
           </div>
         </div>
       </div>
 
-      <div style={{margin:"10px 0 14px", opacity:.8, fontSize:12}}>Modules</div>
+      <div className="sectionLabel">Modules</div>
 
       {appMode !== "portal" && (
-        <a className="menuLink" href="https://portal.ipharmegy.com"> Portal</a>
+        <a className={"menuLink"} href="https://portal.ipharmegy.com">
+          <span className="menuTitle">Portal</span>
+          <span className="menuBadge">HOME</span>
+        </a>
       )}
 
-      {visible.map(m => (
-        <a key={m.key} className="menuLink" href={m.href}>
-          <span style={{fontWeight:900}}>{m.title}</span>
-          <span style={{opacity:.7, fontSize:11}}>  {m.badge}</span>
-        </a>
-      ))}
+      {visible.map(m => {
+        const active = isActiveLink(m.href);
+        return (
+          <a key={m.key} className={"menuLink" + (active ? " active" : "")} href={m.href}>
+            <span className="menuTitle">{m.title}</span>
+            <span className="menuBadge">{m.badge}</span>
+          </a>
+        );
+      })}
 
-      <div style={{marginTop:16, fontSize:12, opacity:.75}}>
-        {new Date().getFullYear()} iPharmEGY Unified Platform
+      <div className="sideFoot">
+        {new Date().getFullYear()} iPharmEGY  Unified Platform
       </div>
     </div>
   );
