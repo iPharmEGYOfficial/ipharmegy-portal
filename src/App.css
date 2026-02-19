@@ -354,3 +354,59 @@ body.cloud { background: linear-gradient(135deg, #0f766e, #14b8a6); color:#fff; 
 body.academy { background: linear-gradient(135deg, #6b21a8, #9333ea); color:#fff; }
 body.inventory { background: linear-gradient(135deg, #166534, #22c55e); color:#fff; }
 body.pos { background: linear-gradient(135deg, #9a3412, #f97316); color:#fff; }
+
+/* ===== SaaS Shell (safe with existing layout.css) ===== */
+.topbarWrap{
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+/* content wrapper takes full width of main */
+.contentWrap{ width: 100%; }
+
+/* centered container */
+.container{
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+.container .content{ padding-top: 22px; }
+
+/* footer bar inside main */
+.footerFull{
+  width: 100%;
+  margin-top: 28px;
+  padding: 14px 0;
+  background: linear-gradient(to right, rgba(0,0,0,.14), rgba(0,0,0,.24));
+  border-top: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(12px);
+}
+.footerInner{
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  opacity: .92;
+}
+.footerLeft{ font-weight: 900; }
+.footerRight{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.footerMeta{ opacity: .80; }
+.footerSep{ opacity: .55; }
+
+/* portal pages should not look narrow */
+.page{ width: 100%; max-width: 1180px; margin: 0 auto; }
+
+/* mobile */
+@media (max-width: 768px){
+  .container{ padding: 0 14px 34px; }
+  .footerInner{ flex-direction: column; align-items: flex-start; }
+}
