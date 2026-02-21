@@ -463,3 +463,25 @@ html, body { height: 100%; }
   padding-bottom: var(--sab);
 }
 
+
+/* =========================================================
+   FIX iOS Sticky Header Overlap (safe-area + content offset)
+   ========================================================= */
+:root{
+  --headerH: 96px; /* fallback if JS not used */
+}
+
+/* Stick header below iOS safe-area */
+.topbarWrap{
+  top: env(safe-area-inset-top);
+}
+
+/* Push content below sticky header */
+.contentWrap{
+  padding-top: calc(var(--headerH) + env(safe-area-inset-top) + 12px);
+}
+
+/* Make sure footer not hidden behind iOS home indicator */
+.footerFull{
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}
