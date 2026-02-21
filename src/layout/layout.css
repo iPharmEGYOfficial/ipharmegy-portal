@@ -181,3 +181,27 @@
   display: none !important;
 }
 
+
+/* =========================================================
+   HARD KILL SIDEBAR SPACE (layout.css override)
+   ========================================================= */
+.layout{
+  display:block !important;
+}
+
+.layout .main{
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.sidebar, .layout .sidebar, .layout aside, .layout nav{
+  display:none !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+}
+
