@@ -485,3 +485,130 @@ html, body { height: 100%; }
 .footerFull{
   padding-bottom: calc(14px + env(safe-area-inset-bottom));
 }
+
+/* =========================================================
+   GLOBAL OVERRIDES: Kill Sidebar + Glass UI + Fix header overlap
+   ========================================================= */
+
+/* Kill sidebar everywhere */
+.sidebar, .side, .navSide, .sidebarWrap, .layout .sidebar{
+  display:none !important;
+}
+
+/* Ensure layout doesn't reserve sidebar space */
+.layout{
+  display:block !important;
+}
+.layout.noSide .main,
+.layout .main{
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+/* iOS safe areas */
+:root{ --headerH: 92px; } /* tweak if needed */
+
+/* Sticky header */
+.topbarWrap{
+  width: 100%;
+  position: sticky;
+  top: env(safe-area-inset-top);
+  z-index: 1000;
+}
+
+/* Push content below header so it never overlaps */
+.contentWrap{
+  padding-top: calc(var(--headerH) + env(safe-area-inset-top) + 10px);
+}
+
+/* Container */
+.container{
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 18px 40px;
+}
+
+/* Footer safe area */
+.footerFull{
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}
+
+/* Make cards glass/transparent (matches background) */
+.card, .denyCard, .activity, .kpi, .action{
+  background: rgba(255,255,255,.12) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  backdrop-filter: blur(14px);
+  color: #fff !important;
+}
+
+/* Muted texts in dark background */
+.cardDesc, .muted, .actionHint, .kpiLbl{
+  color: rgba(255,255,255,.70) !important;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px){
+  :root{ --headerH: 106px; }
+  .container{ padding: 0 14px 34px; }
+  .footerInner{ flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ===== Portal Landing (simple cards: name + logo + button) ===== */
+.landing{ width:100%; }
+.landingHead{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin: 6px 0 16px;
+}
+.landingTitle{ font-size: 28px; font-weight: 950; letter-spacing:.3px; }
+.landingSub{ margin-top: 6px; opacity:.8; }
+
+.landingGrid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.appCard{
+  grid-column: span 3;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(14px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 12px;
+  text-align:center;
+}
+
+.appLogo{
+  width: 74px; height: 74px;
+  border-radius: 22px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 18px 42px rgba(0,0,0,.25);
+}
+.appLogo span{
+  font-weight: 950;
+  color: #fff;
+  letter-spacing: .06em;
+}
+
+.appName{ font-size: 18px; font-weight: 950; }
+.appBtn{
+  width:100%;
+  text-decoration:none;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.88);
+  color:#0f172a;
+  font-weight: 950;
+  border: 1px solid rgba(15,23,42,.10);
+}
+.appBtn:hover{ filter: brightness(1.02); transform: translateY(-1px); }
+
+@media (max-width: 1100px){ .appCard{ grid-column: span 6; } }
+@media (max-width: 700px){ .appCard{ grid-column: span 12; } }
+
