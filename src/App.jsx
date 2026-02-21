@@ -1,27 +1,21 @@
 ﻿import { useEffect } from "react";
-
 import PortalLanding from "./pages/PortalLanding";
+
 import { useAuth } from "./auth/useAuth";
 
-import PortalLanding from "./pages/PortalLanding";
 import Layout from "./layout/Layout";
 
-import PortalLanding from "./pages/PortalLanding";
 import AccessDenied from "./components/AccessDenied.jsx";
 
-import PortalLanding from "./pages/PortalLanding";
 import Skeleton from "./components/Skeleton";
 
-import PortalLanding from "./pages/PortalLanding";
 import "./App.css";
 
 import { MODULES, BRAND } from "./config/modules";
 
-import PortalLanding from "./pages/PortalLanding";
 import { canSeeCard, canAccessModule, isViewer } from "./config/enterpriseRules";
 
 
-import PortalLanding from "./pages/PortalLanding";
 function ModuleCard({ m, appMode, role }) {
   const b = BRAND[m.key] || BRAND.portal;
   const viewer = isViewer(role);
