@@ -1,35 +1,44 @@
-﻿import "./App.css";
-
-
+﻿import Layout from "./layout/Layout";
 import PortalLanding from "./pages/PortalLanding.jsx";
+import ModuleDashboard from "./pages/ModuleDashboard.jsx";
+import AccessDenied from "./components/AccessDenied.jsx";
+import Skeleton from "./components/Skeleton.jsx";
+import { useAuth } from "./auth/useAuth";
+import "./App.css";
+
 export default function App() {
+  const { loading, role, identity, appMode, error } = useAuth();
+  const isPortal = (appMode || "portal") === "portal";
 
-  const apps = [
-    { name: "POS", url: "https://pos.ipharmegy.com", logo: "/logos/pos.png", color: "#f97316" },
-    { name: "ADMIN", url: "https://admin.ipharmegy.com", logo: "/logos/admin.png", color: "#2563eb" },
-    { name: "INVENTORY", url: "https://inventory.ipharmegy.com", logo: "/logos/inventory.png", color: "#16a34a" },
-    { name: "ACADEMY", url: "https://academy.ipharmegy.com", logo: "/logos/academy.png", color: "#7c3aed" },
-    { name: "CLOUD", url: "https://cloud.ipharmegy.com", logo: "/logos/cloud.png", color: "#0ea5e9" }
-  ];
+  if (loading) {
+    return (
+      <Layout role={role} identity={identity} appMode={appMode}>
+        <Skeleton />
+      </Layout>
+    );
+  }
 
+  if (error) {
+    return (
+      <Layout role={role} identity={identity} appMode={appMode}>
+        <AccessDenied identity={identity} role={role} appMode={appMode} reason={error} />
+      </Layout>
+    );
+  }
+
+  //  Portal landing ONLY on portal host
+  if (isPortal) {
+    return (
+      <Layout role={role} identity={identity} appMode={appMode}>
+        <PortalLanding />
+      </Layout>
+    );
+  }
+
+  //  Subdomains render their dashboard (NO landing) => stops the loop
   return (
-    <div className="minimalLanding">
-      {apps.map(app => (
-        <div
-          key={app.name}
-          className="minimalCard"
-          style={{ backgroundImage: `url(${app.logo})` }}
-        >
-          <a
-            href={app.url}
-            className="minimalBtn"
-            style={{ background: app.color }}
-          >
-            Open {app.name}
-          </a>
-        </div>
-      ))}
-    </div>
+    <Layout role={role} identity={identity} appMode={appMode}>
+      <ModuleDashboard appMode={appMode} role={role} />
+    </Layout>
   );
 }
-

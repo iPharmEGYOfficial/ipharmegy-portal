@@ -8,19 +8,20 @@
   ];
 
   return (
-    <div className="landing">
-      <div className="landingGrid">
-        {apps.map((a) => (
-          <div
+    <div className="landingRadial">
+      <div className="radialStage" aria-label="iPharmEGY Portal Apps">
+        {apps.map((a, i) => (
+          <a
             key={a.key}
-            className={"appCard appCard--" + a.key}
-            style={{ ["--wm"]: `url(${a.wm})` }}
+            className={"orb orb--" + a.key + " orb--i" + i}
+            href={a.url}
+            aria-label={a.label}
+            style={{ "--wm": `url(${a.wm})` }}
           >
-            <a className={"openBtn openBtn--" + a.key} href={a.url}>
-              {a.label}
-            </a>
-          </div>
+            <span className="orbBtn">{a.label}</span>
+          </a>
         ))}
+        <div className="radialCenter" aria-hidden="true"></div>
       </div>
     </div>
   );
