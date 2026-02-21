@@ -1,0 +1,207 @@
+﻿.layout { display:flex; min-height:100vh; }
+
+.sidebar{
+  width: 270px;
+  padding: 18px;
+  color: #fff;
+  background: rgba(0,0,0,.28);
+  border-right: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+}
+
+.brandRow{ display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+.brandMark{
+  width:42px; height:42px; border-radius:14px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.12);
+  font-weight: 950;
+  letter-spacing:.5px;
+}
+.brandName{ font-weight: 950; line-height: 1; font-size: 16px; }
+.brandMeta{ margin-top:5px; font-size: 12px; opacity:.85; display:flex; align-items:center; gap:8px; }
+.sep{ opacity:.6; }
+
+.sectionLabel{
+  margin: 12px 0 10px;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+.menuLink{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-decoration:none;
+  color:#fff;
+  border: 1px solid transparent;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.menuLink:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+.menuLink.active{
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.18);
+}
+
+.menuTitle{ font-weight: 900; }
+.menuBadge{
+  font-size: 11px;
+  font-weight: 950;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.12);
+  opacity: .95;
+}
+
+.sideFoot{
+  margin-top: 16px;
+  font-size: 12px;
+  opacity: .75;
+}
+
+.main{ flex:1; display:flex; flex-direction:column; }
+
+.topbar{
+  padding: 16px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  color:#fff;
+
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.topLeft{ display:flex; flex-direction:column; }
+.topApp{ font-weight: 950; letter-spacing: .08em; font-size: 12px; opacity:.95; }
+.topHint{ font-size: 12px; opacity:.75; margin-top:3px; }
+
+.topRight{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: 12px;
+}
+.chipTxt{ opacity:.92; }
+
+.user{ display:flex; align-items:center; gap:10px; }
+.avatar{
+  width: 38px; height: 38px; border-radius: 14px;
+  display:grid; place-items:center;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.12);
+  font-weight: 950;
+}
+.userMeta{ line-height:1.15; }
+.userName{ font-weight: 900; font-size: 12px; }
+.userEmail{ font-size: 11px; opacity:.75; max-width: 320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.dot{ width:8px; height:8px; border-radius:999px; display:inline-block; }
+.dot.ok{ background:#22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+
+.content{ padding: 22px; flex:1; }
+.footer{
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  color:#fff;
+  font-size:13px;
+}
+
+.footerLeft{ opacity:.85; }
+
+.footerRight{
+  display:flex;
+  gap:14px;
+  opacity:.85;
+}
+
+@media (max-width: 720px){
+  .sidebar{ display:none; }
+  .content{ padding: 16px; }
+}
+
+
+/* SaaS polish for subdomains (no sidebar) */
+.layout.noSide .topbar{
+  margin: 20px auto 0;
+  max-width: 1180px;
+  border-radius: 20px;
+}
+
+.layout.noSide .footer{
+  margin: 0 auto 16px;
+  max-width: 1180px;
+  border-radius: 20px;
+}
+
+/* =========================================================
+   FIX: Remove Sidebar Layout Forever (noSide always)
+   ========================================================= */
+
+.layout{
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* main takes full width */
+.layout.noSide .main{
+  width: 100%;
+  margin-left: 0 !important;
+}
+
+/* in case old css used padding-left for sidebar */
+.layout.noSide{
+  padding-left: 0 !important;
+}
+
+/* make sure no fixed sidebar overlays */
+.sidebar, .side, .navSide{
+  display: none !important;
+}
+
+
+/* =========================================================
+   HARD KILL SIDEBAR SPACE (layout.css override)
+   ========================================================= */
+.layout{
+  display:block !important;
+}
+
+.layout .main{
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.sidebar, .layout .sidebar, .layout aside, .layout nav{
+  display:none !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:0 !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+}
+

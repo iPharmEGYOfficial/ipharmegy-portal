@@ -1,0 +1,31 @@
+﻿export default function PortalLanding() {
+  const apps = [
+    { key: "admin",     label: "ADMIN",     url: "https://admin.ipharmegy.com",     wm: "/logos/admin.png" },
+    { key: "pos",       label: "POS",       url: "https://pos.ipharmegy.com",       wm: "/logos/pos.png" },
+    { key: "inventory", label: "INVENTORY", url: "https://inventory.ipharmegy.com", wm: "/logos/inventory.png" },
+    { key: "academy",   label: "ACADEMY",   url: "https://academy.ipharmegy.com",   wm: "/logos/academy.png" },
+    { key: "cloud",     label: "CLOUD",     url: "https://cloud.ipharmegy.com",     wm: "/logos/cloud.png" },
+  ];
+
+  return (
+    <div className="radialPage">
+      <div className="radialStage">
+        <div className="radialCenter" aria-hidden="true"></div>
+
+        <div className="radialRing" role="navigation" aria-label="iPharmEGY Apps">
+          {apps.map((a, i) => (
+            <a
+              key={a.key}
+              className={"radialItem radialItem--" + a.key}
+              href={a.url}
+              data-wm={a.wm}
+              style={{ transform: `translate(-50%,-50%) rotate(${i * (360 / apps.length)}deg) translate(190px) rotate(${-i * (360 / apps.length)}deg)` }}
+            >
+              <span className="radialBtn">{a.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

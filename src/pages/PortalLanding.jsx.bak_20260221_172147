@@ -1,0 +1,26 @@
+﻿export default function PortalLanding() {
+  const apps = [
+    { key: "admin",     label: "Open ADMIN",     url: "https://admin.ipharmegy.com",     wm: "/logos/admin.png" },
+    { key: "pos",       label: "Open POS",       url: "https://pos.ipharmegy.com",       wm: "/logos/pos.png" },
+    { key: "inventory", label: "Open INVENTORY", url: "https://inventory.ipharmegy.com", wm: "/logos/inventory.png" },
+    { key: "academy",   label: "Open ACADEMY",   url: "https://academy.ipharmegy.com",   wm: "/logos/academy.png" },
+    { key: "cloud",     label: "Open CLOUD",     url: "https://cloud.ipharmegy.com",     wm: "/logos/cloud.png" },
+  ];
+
+  return (
+    <div className="landing">
+      <div className="landingGrid">
+        {apps.map(a => (
+          <a
+            key={a.key}
+            className={"appCircle appCircle--" + a.key}
+            href={a.url}
+            style={{ "--wm": "url(" + a.wm + ")" }}
+          >
+            <span className="appCircleBtn">{a.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,48 @@
+﻿import "./App.css";
+
+import PortalLanding from "./pages/PortalLanding.jsx";
+function getAppModeFromHost(){
+  const host = (typeof window !== "undefined" && window.location && window.location.hostname) ? window.location.hostname.toLowerCase() : "";
+  const sub = host.split(".")[0] || "";
+  // portal landing should only be on portal.ipharmegy.com or ipharmegy.com
+  if(sub === "portal" || sub === "ipharmegy"){ return "portal"; }
+  // allow subdomains to show their own module UI even on same Pages project
+  if(["admin","pos","inventory","academy","cloud"].includes(sub)){ return sub; }
+  return "portal";
+}
+export default function App() {
+
+  
+  const appMode2 = getAppModeFromHost();
+  const isPortal = appMode2 === "portal";
+  if(isPortal){ return <PortalLanding />; }
+const apps = [
+    { name: "POS", url: "https://pos.ipharmegy.com", logo: "/logos/pos.png", color: "#f97316" },
+    { name: "ADMIN", url: "https://admin.ipharmegy.com", logo: "/logos/admin.png", color: "#2563eb" },
+    { name: "INVENTORY", url: "https://inventory.ipharmegy.com", logo: "/logos/inventory.png", color: "#16a34a" },
+    { name: "ACADEMY", url: "https://academy.ipharmegy.com", logo: "/logos/academy.png", color: "#7c3aed" },
+    { name: "CLOUD", url: "https://cloud.ipharmegy.com", logo: "/logos/cloud.png", color: "#0ea5e9" }
+  ];
+
+  return (
+    <div className="minimalLanding">
+      {apps.map(app => (
+        <div
+          key={app.name}
+          className="minimalCard"
+          style={{ backgroundImage: `url(${app.logo})` }}
+        >
+          <a
+            href={app.url}
+            className="minimalBtn"
+            style={{ background: app.color }}
+          >
+            Open {app.name}
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
