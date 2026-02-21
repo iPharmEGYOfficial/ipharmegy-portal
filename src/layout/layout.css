@@ -155,3 +155,29 @@
   max-width: 1180px;
   border-radius: 20px;
 }
+
+/* =========================================================
+   FIX: Remove Sidebar Layout Forever (noSide always)
+   ========================================================= */
+
+.layout{
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* main takes full width */
+.layout.noSide .main{
+  width: 100%;
+  margin-left: 0 !important;
+}
+
+/* in case old css used padding-left for sidebar */
+.layout.noSide{
+  padding-left: 0 !important;
+}
+
+/* make sure no fixed sidebar overlays */
+.sidebar, .side, .navSide{
+  display: none !important;
+}
+
