@@ -1268,3 +1268,58 @@ body{
 
 .orb { position: absolute; z-index: 10 !important; }
 
+
+/* === CLEAN CENTERED RING (Laptop-friendly) === */
+.landingRadial{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+}
+
+/* اجعل الحلقة نفسها في المنتصف */
+.radialStage{
+  position: relative;
+  width: min(720px, 92vw);
+  height: min(720px, 92vw);
+  margin: 0 auto;
+}
+
+/* زر IFormEG داخل الحلقة */
+.centerBtn{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 800;
+  letter-spacing: .6px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+  color: rgba(255,255,255,.92);
+}
+
+/* إزالة أي Watermark/خلفيات داخل الأورب (لو كانت موجودة في CSS) */
+.orb{ background-image: none !important; }
+.orbInner{ background-image: none !important; }
+.orbInner::before,
+.orbInner::after{ content: none !important; }
+
+/* تأكيد قابلية الضغط (لو في طبقات ring) */
+.radialStage::before,
+.radialStage::after{ pointer-events:none !important; }
+.orb{ z-index: 10 !important; }
+
+/* اجعل النص فقط (بدون زر Open) */
+.orbName{
+  font-weight: 800;
+  letter-spacing: .4px;
+}
