@@ -9,9 +9,7 @@
 
   return (
     <div className="landingRadial">
-      {/* Header removed بالكامل حسب طلبك */}
-
-      <div className="radialStage" aria-label="IFormEG Apps Ring">
+      <div className="radialStage" aria-label="iPharmEG Apps Ring">
         {apps.map((a, i) => (
           <a
             key={a.key}
@@ -26,7 +24,7 @@
           </a>
         ))}
 
-                {/* Center Button */}
+        {/* Center Button */}
         <div className="radialCenter">
           <a
             className="centerBtn"
