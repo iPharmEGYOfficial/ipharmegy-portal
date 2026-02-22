@@ -1507,3 +1507,18 @@ body{
 }
 
 /* ================================================================ */
+
+/* === CENTER ICON FILL (iPharmEG button) === */
+.ringCenterBtn{
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.ringCenterIcon{
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;      /* لو عايزها تملأ بالكامل */
+  /* object-fit: contain !important; */ /* بديل: لو عايزها تظهر كاملة بدون قص */
+}
+/* ========================================== */
