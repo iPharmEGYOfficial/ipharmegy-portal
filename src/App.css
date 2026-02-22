@@ -1468,3 +1468,42 @@ body{
   -webkit-backdrop-filter: blur(12px) !important;
 }
 /* ========================================= */
+
+
+
+
+/* === RING TUNE: smaller + colored services + soft-click friendly === */
+
+/* تصغير بسيط للحلقة */
+.radialStage{
+  width: min(640px, 92vw) !important;
+  height: min(640px, 92vw) !important;
+}
+
+/* تلوين كل خدمة (Tint Overlay) */
+.orb{
+  background: linear-gradient(135deg, var(--orbTint), rgba(255,255,255,.06)) !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+/* تحسين وضوح النص */
+.orbName{
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  letter-spacing: .4px !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35) !important;
+}
+
+/* تأكيد قابلية اللمس/الضغط */
+.orb, .orbInner, .orbName{
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* زر المنتصف أجمل و أوضح */
+.ringCenterBtn{
+  background: rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+}
+
+/* ================================================================ */
