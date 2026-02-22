@@ -16,7 +16,7 @@
             className={"orb orb--" + a.key + " orb--i" + i}
             href={a.url}
             onClick={() => window.open(a.url, "_self")}
-            aria-label={"Open " + a.name}
+            aria-label={a.name}
           >
             <span className="orbInner">
               <span className="orbName">{a.name}</span>
@@ -24,10 +24,10 @@
           </a>
         ))}
 
-        {/* Center Button */}
-        <div className="radialCenter">
+        {/* Center button (NEW classes to avoid conflicts) */}
+        <div className="ringCenterWrap">
           <a
-            className="centerBtn"
+            className="ringCenterBtn"
             href="https://ipharmegy.com"
             onClick={() => window.open("https://ipharmegy.com", "_self")}
             aria-label="Open iPharmEG"

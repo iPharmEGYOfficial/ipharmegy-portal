@@ -1412,3 +1412,59 @@ body{
   -webkit-backdrop-filter: blur(12px);
 }
 /* ======================================================= */
+
+/* === RING CENTER BUTTON (HARD OVERRIDE) === */
+.landingRadial{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+}
+
+.radialStage{
+  position: relative !important;
+  width: min(720px, 92vw);
+  height: min(720px, 92vw);
+  margin: 0 auto;
+}
+
+/* مهم جداً: أي رسومات للحلقة لا تغطي النقر */
+.radialStage::before,
+.radialStage::after{
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* الأورب والنص فوق الخلفية */
+.orb{ position: absolute; z-index: 10 !important; }
+
+/* طبقة زر المنتصف فوق كل شيء */
+.ringCenterWrap{
+  position:absolute !important;
+  inset: 0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  z-index: 9999 !important;
+  pointer-events: none !important; /* لا تمنع ضغط الأورب */
+}
+
+.ringCenterBtn{
+  pointer-events: auto !important; /* الزر نفسه قابل للضغط */
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 999px !important;
+  text-decoration:none !important;
+  font-weight: 900 !important;
+  letter-spacing: .6px !important;
+  color: rgba(255,255,255,.95) !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+/* ========================================= */
