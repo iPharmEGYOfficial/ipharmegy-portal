@@ -1522,3 +1522,37 @@ body{
   /* object-fit: contain !important; */ /* بديل: لو عايزها تظهر كاملة بدون قص */
 }
 /* ========================================== */
+
+/* === PORTAL: shrink ring + service colors === */
+.radialStage{
+  width: min(620px, 92vw) !important;
+  height: min(620px, 92vw) !important;
+}
+
+/* لون مميز لكل خدمة عبر --tint */
+.orb{
+  background: radial-gradient(circle at 30% 20%, var(--tint, rgba(255,255,255,.14)), rgba(0,0,0,0) 60%) !important;
+  transition: transform .12s ease, filter .12s ease;
+}
+.orb:active{
+  transform: scale(0.985);
+  filter: brightness(1.08);
+}
+/* ============================================ */
+
+/* === PORTAL: shrink ring + service colors === */
+.radialStage{
+  width: min(620px, 92vw) !important;
+  height: min(620px, 92vw) !important;
+}
+
+/* لون مميز لكل خدمة عبر --tint */
+.orb{
+  background: radial-gradient(circle at 30% 20%, var(--tint, rgba(255,255,255,.14)), rgba(0,0,0,0) 60%) !important;
+  transition: transform .12s ease, filter .12s ease;
+}
+.orb:active{
+  transform: scale(0.985);
+  filter: brightness(1.08);
+}
+/* ============================================ */
