@@ -1261,3 +1261,10 @@ body{
   .radialStage::before, .radialCenter::before{ animation:none !important; }
   .orb:hover, .orb:focus{ --s: 1; }
 }
+
+/* === HOTFIX: allow orb clicks (radialStage pseudo-elements were blocking clicks) === */
+.radialStage::before,
+.radialStage::after { pointer-events: none !important; }
+
+.orb { position: absolute; z-index: 10 !important; }
+
