@@ -22,7 +22,7 @@
           <a
             key={a.key}
             className={"orb orb--" + a.key + " orb--i" + i}
-            href={a.url}
+            href={a.url} onClick={(e)=>{e.preventDefault();window.location.assign(a.url);}}
             aria-label={"Open " + a.name}
             style={{ "--wm": `url(${a.wm})` }}
           >
@@ -44,4 +44,5 @@
     </div>
   );
 }
+
 
