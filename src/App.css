@@ -1323,3 +1323,35 @@ body{
   font-weight: 800;
   letter-spacing: .4px;
 }
+
+/* === CENTER BUTTON FIX (make it visible & clickable) === */
+.radialStage { position: relative; }
+
+.radialCenter{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index: 999 !important;
+  pointer-events:none; /* so it doesn't block orb clicks */
+}
+
+.centerBtn{
+  pointer-events:auto; /* but the button itself is clickable */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 900;
+  letter-spacing: .6px;
+  color: rgba(255,255,255,.95);
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+/* ======================================================= */
+

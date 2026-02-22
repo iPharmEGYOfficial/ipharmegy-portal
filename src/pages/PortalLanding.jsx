@@ -26,14 +26,15 @@
           </a>
         ))}
 
-        <div className="radialCenter" aria-hidden="false">
+                {/* Center Button */}
+        <div className="radialCenter">
           <a
             className="centerBtn"
             href="https://ipharmegy.com"
             onClick={() => window.open("https://ipharmegy.com", "_self")}
-            aria-label="Open IFormEG"
+            aria-label="Open iPharmEG"
           >
-            IFormEG
+            iPharmEG
           </a>
         </div>
       </div>
