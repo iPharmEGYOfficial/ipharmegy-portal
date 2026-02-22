@@ -1,4 +1,4 @@
-export default function PortalLanding() {
+﻿export default function PortalLanding() {
   const apps = [
     { key: "admin",     name: "Admin",     url: "https://admin.ipharmegy.com",     wm: "/logos/admin.png" },
     { key: "pos",       name: "POS",       url: "https://pos.ipharmegy.com",       wm: "/logos/pos.png" },
@@ -44,3 +44,4 @@ export default function PortalLanding() {
     </div>
   );
 }
+
