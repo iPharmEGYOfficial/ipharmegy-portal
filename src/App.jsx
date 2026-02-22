@@ -1,6 +1,6 @@
 ﻿import Layout from "./layout/Layout";
 import PortalLanding from "./pages/PortalLanding.jsx";
-import ModuleDashboard from "./pages/ModuleDashboard.jsx";
+import ModuleDashboard from "./modules/ModuleDashboard.jsx";
 import AccessDenied from "./components/AccessDenied.jsx";
 import Skeleton from "./components/Skeleton.jsx";
 import { useAuth } from "./auth/useAuth";
@@ -42,3 +42,4 @@ export default function App() {
     </Layout>
   );
 }
+
