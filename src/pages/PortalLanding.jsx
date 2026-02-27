@@ -1,52 +1,66 @@
 ﻿export default function PortalLanding() {
 
   const apps = [
-    { key:"admin", name:"Admin", url:"https://admin.ipharmegy.com", icon:"/assets/ring/admin-3d.png" },
-    { key:"pos", name:"POS", url:"https://pos.ipharmegy.com", icon:"/assets/ring/pos-3d.png" },
-    { key:"inventory", name:"Inventory", url:"https://inventory.ipharmegy.com", icon:"/assets/ring/inventory-3d.png" },
-    { key:"academy", name:"Academy", url:"https://academy.ipharmegy.com", icon:"/assets/ring/academy-3d.png" },
-    { key:"cloud", name:"Cloud", url:"https://cloud.ipharmegy.com", icon:"/assets/ring/cloud-3d.png" },
-    { key:"alnour", name:"AlNour", url:"https://alnour.ipharmegy.com", icon:"/assets/ring/alnour-3d.png" }
+    { key:"inventory", name:"Inventory", url:"https://inventory.ipharmegy.com" },
+    { key:"pos",       name:"POS",       url:"https://pos.ipharmegy.com" },
+    { key:"portal",    name:"Portal",    url:"https://portal.ipharmegy.com" },
+    { key:"academy",   name:"Academy",   url:"https://academy.ipharmegy.com" },
+    { key:"cloud",     name:"Cloud",     url:"https://cloud.ipharmegy.com" },
+    { key:"alnour",    name:"AlNour",    url:"https://alnour.ipharmegy.com" }
   ];
 
   const total = apps.length;
-  const radius = 240;
+  const radius = 210;
 
   return (
-    <div className="landingRadial">
+    <div className="homeSplit">
 
-      <div className="ringRotator">
-        <div className="radialStage">
+      {/* LEFT: 3D Ring */}
+      <section className="homeLeft">
+        <div className="ringWrap">
+          <div className="ringRotator">
+            <div className="radialStage">
 
-          {apps.map((app, i) => {
-            const angle = (360 / total) * i;
+              {apps.map((app, i) => {
+                const angle = (360 / total) * i;
+                return (
+                  <div
+                    key={app.key}
+                    className="orbPosition"
+                    style={{ transform: `rotate(${angle}deg) translate(${radius}px)` }}
+                  >
+                    <a
+                      href={app.url}
+                      className="orb3D"
+                      style={{ transform: `rotate(-${angle}deg)` }}
+                      title={app.name}
+                    >
+                      <span className="orb3DText">{app.name}</span>
+                    </a>
+                  </div>
+                );
+              })}
 
-            return (
-              <div
-                key={app.key}
-                className="orbPosition"
-                style={{
-                  transform: `rotate(${angle}deg) translate(${radius}px)`
-                }}
-              >
-                <a
-                  href={app.url}
-                  className="orbContent"
-                  style={{ transform: `rotate(-${angle}deg)` }}
-                >
-                  <img src={app.icon} alt={app.name} />
-                  <span className="orbLabel">{app.name}</span>
-                </a>
+              <div className="ringCenterBadge" title="iPharmEGY HEXA">
+                <div className="ringCenterTitle">iPharmEGY</div>
+                <div className="ringCenterSub">HEXA SYSTEM</div>
               </div>
-            );
-          })}
 
-          <div className="ringCenter">
-            <img src="/assets/ring/ipharmegy-center-soft.png" alt="iPharmEGY"/>
+            </div>
           </div>
-
         </div>
-      </div>
+      </section>
+
+      {/* RIGHT: Signature + Logo image */}
+      <section className="homeRight">
+        <div className="signatureCard">
+          <img
+            className="signatureImg"
+            src="/assets/ring/signatureMark.png"
+            alt="Haitham Osama Abdelghaffar Signature"
+          />
+        </div>
+      </section>
 
     </div>
   );

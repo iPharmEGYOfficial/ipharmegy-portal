@@ -1,32 +1,119 @@
-﻿export default function Dashboard(){
+﻿import { useEffect, useMemo, useState } from "react";
+
+function statusClass(s){
+  if (s === "online") return "s-online";
+  if (s === "degraded") return "s-degraded";
+  return "s-offline";
+}
+
+export default function Dashboard(){
+  const [data, setData] = useState(null);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    fetch("/data/live.json")
+      .then(r => r.json())
+      .then(j => setData(j))
+      .catch(() => setData({ system:{uptimePct:"",latencyMs:"",errorRatePct:""}, services:[] }));
+  }, []);
+
+  const sys = data?.system || { uptimePct:"", latencyMs:"", errorRatePct:"" };
+  const services = useMemo(() => data?.services || [], [data]);
+
   return (
-    <div style={{display:"grid", gap:14}}>
-      <div style={{background:"rgba(255,255,255,.86)", border:"1px solid rgba(15,23,42,.10)", borderRadius:18, padding:16}}>
-        <h2 style={{margin:"0 0 6px"}}>Today</h2>
-        <div style={{color:"rgba(15,23,42,.60)"}}>Placeholder dashboard. Next: connect identity + roles + real data.</div>
+    <div className="content">
+
+      <div className="healthRow">
+        <div className="card">
+          <div className="cardHead">
+            <div>
+              <div className="cardTitle">System Uptime</div>
+              <div className="cardMeta">Last 30 days</div>
+            </div>
+          </div>
+          <div className="kpis">
+            <div className="kpi">
+              <div className="kpiLabel">Uptime %</div>
+              <div className="kpiValue">{sys.uptimePct}</div>
+            </div>
+            <div className="kpi">
+              <div className="kpiLabel">Error Rate %</div>
+              <div className="kpiValue">{sys.errorRatePct}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="cardHead">
+            <div>
+              <div className="cardTitle">Gateway Latency</div>
+              <div className="cardMeta">Cloudflare edge  origin</div>
+            </div>
+          </div>
+          <div className="kpis">
+            <div className="kpi">
+              <div className="kpiLabel">Latency (ms)</div>
+              <div className="kpiValue">{sys.latencyMs}</div>
+            </div>
+            <div className="kpi">
+              <div className="kpiLabel">Time</div>
+              <div className="kpiValue">{now.toLocaleTimeString()}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="cardHead">
+            <div>
+              <div className="cardTitle">Admin Quick Actions</div>
+              <div className="cardMeta">Control shortcuts</div>
+            </div>
+          </div>
+          <div className="actions">
+            <a className="btn btnPrimary" href="https://admin.ipharmegy.com" target="_blank" rel="noreferrer">Open Admin</a>
+            <a className="btn" href="https://cloud.ipharmegy.com" target="_blank" rel="noreferrer">Cloud</a>
+          </div>
+          <div className="cardMeta" style={{marginTop:12}}>
+            (Live APIs later)  For now driven by <b>/public/data/live.json</b>.
+          </div>
+        </div>
       </div>
 
-      <div style={{display:"grid", gridTemplateColumns:"repeat(12,1fr)", gap:14}}>
-        {[
-          ["Active Modules","4"],
-          ["Users (sample)","12"],
-          ["Uptime target","99.9%"],
-        ].map(([k,v])=>(
-          <div key={k} style={{gridColumn:"span 4", background:"rgba(255,255,255,.86)", border:"1px solid rgba(15,23,42,.10)", borderRadius:18, padding:16}}>
-            <div style={{fontWeight:900, fontSize:26}}>{v}</div>
-            <div style={{color:"rgba(15,23,42,.60)", marginTop:4}}>{k}</div>
+      <div className="grid">
+        {services.map(s => (
+          <div key={s.key} className="card">
+            <div className="cardHead">
+              <div>
+                <div className="cardTitle">{s.name}</div>
+                <div className="cardMeta">Updated: {s.updated}</div>
+              </div>
+              <div className={"status " + statusClass(s.status)}>{s.status.toUpperCase()}</div>
+            </div>
+
+            <div className="kpis">
+              <div className="kpi">
+                <div className="kpiLabel">{s.kpi1}</div>
+                <div className="kpiValue">{s.kpi1v}</div>
+              </div>
+              <div className="kpi">
+                <div className="kpiLabel">{s.kpi2}</div>
+                <div className="kpiValue">{s.kpi2v}</div>
+              </div>
+            </div>
+
+            <div className="actions">
+              <a className="btn btnPrimary" href={s.url} target="_blank" rel="noreferrer">Open</a>
+              <a className="btn" href={s.url} target="_blank" rel="noreferrer">Details</a>
+            </div>
           </div>
         ))}
       </div>
 
-      <div style={{background:"rgba(255,255,255,.70)", border:"1px solid rgba(15,23,42,.10)", borderRadius:18, padding:16}}>
-        <div style={{fontWeight:950}}>Next steps</div>
-        <ul style={{margin:"10px 0 0", color:"rgba(15,23,42,.60)", lineHeight:1.8}}>
-          <li>Connect Cloudflare Access identity</li>
-          <li>Add roles.json + permissions</li>
-          <li>Build modules: Clients, Billing, API, Settings</li>
-        </ul>
-      </div>
     </div>
   );
 }

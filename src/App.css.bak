@@ -1,0 +1,95 @@
+﻿/* ============================
+   HEXA RING (Like Old Pentagonal)
+============================ */
+
+.landingRadial{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* دوران خفيف جدًا */
+.ringRotator{
+  animation: slowSpin 90s linear infinite;
+}
+
+@keyframes slowSpin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+.radialStage{
+  position:relative;
+  width:620px;
+  height:620px;
+}
+
+/* حلقة خلفية ناعمة */
+.radialStage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background: radial-gradient(circle at center,
+              rgba(0,255,200,.10),
+              rgba(0,255,200,.05),
+              transparent 70%);
+  pointer-events:none;
+}
+
+/* موضع العنصر على الحلقة */
+.orbPosition{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform-origin:0 0;
+}
+
+/* الأيقونة نفسها */
+.orbContent{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  transition:.25s ease;
+}
+
+.orbContent img{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  background:transparent;
+}
+
+/* Hover */
+.orbContent:hover{
+  transform:scale(1.18);
+}
+
+.orbLabel{
+  margin-top:8px;
+  font-weight:700;
+  font-size:14px;
+  color:#fff;
+  opacity:0;
+  transition:.2s ease;
+}
+
+.orbContent:hover .orbLabel{
+  opacity:1;
+}
+
+/* مركز */
+.ringCenter{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.ringCenter img{
+  width:140px;
+  height:140px;
+  object-fit:contain;
+}
