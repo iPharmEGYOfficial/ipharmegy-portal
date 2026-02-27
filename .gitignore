@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 *.bak_*
+# Local archives / backups
+_archive_before_*/
+*.bak
+*.bak*
