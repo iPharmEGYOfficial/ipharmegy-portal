@@ -1,47 +1,53 @@
 ﻿export default function PortalLanding() {
+
   const apps = [
-    { key: "admin",     name: "Admin",     url: "https://admin.ipharmegy.com",     tint: "rgba(80,140,255,.35)" },
-    { key: "pos",       name: "POS",       url: "https://pos.ipharmegy.com",       tint: "rgba(255,170,60,.35)" },
-    { key: "inventory", name: "Inventory", url: "https://inventory.ipharmegy.com", tint: "rgba(60,220,170,.35)" },
-    { key: "academy",   name: "Academy",   url: "https://academy.ipharmegy.com",   tint: "rgba(180,90,255,.38)" },
-    { key: "cloud",     name: "Cloud",     url: "https://cloud.ipharmegy.com",     tint: "rgba(60,220,255,.32)" },
+    { key:"admin", name:"Admin", url:"https://admin.ipharmegy.com", icon:"/assets/ring/admin-3d.png" },
+    { key:"pos", name:"POS", url:"https://pos.ipharmegy.com", icon:"/assets/ring/pos-3d.png" },
+    { key:"inventory", name:"Inventory", url:"https://inventory.ipharmegy.com", icon:"/assets/ring/inventory-3d.png" },
+    { key:"academy", name:"Academy", url:"https://academy.ipharmegy.com", icon:"/assets/ring/academy-3d.png" },
+    { key:"cloud", name:"Cloud", url:"https://cloud.ipharmegy.com", icon:"/assets/ring/cloud-3d.png" },
+    { key:"alnour", name:"AlNour", url:"https://alnour.ipharmegy.com", icon:"/assets/ring/alnour-3d.png" }
   ];
 
-  const go = (url) => { window.location.href = url; };
+  const total = apps.length;
+  const radius = 240;
 
   return (
     <div className="landingRadial">
-      <div className="radialStage" aria-label="iPharmEG Apps Ring">
-        {apps.map((a, i) => (
-          <a
-            key={a.key}
-            className={"orb orb--" + a.key + " orb--i" + i}
-            href={a.url}
-            aria-label={a.name}
-            style={{ "--tint": a.tint }}
-            onPointerDown={() => go(a.url)}  /*  soft click */
-            onClick={(e) => e.preventDefault()} /* يمنع click المكرر */
-          >
-            <span className="orbInner">
-              <span className="orbName">{a.name}</span>
-            </span>
-          </a>
-        ))}
 
-        {/* Center button */}
-        <div className="ringCenterWrap">
-          <a
-            className="ringCenterBtn"
-            href="https://ipharmegy.com"
-            aria-label="Open iPharmEG"
-            title="iPharmEG"
-            onPointerDown={() => go("https://ipharmegy.com")}
-            onClick={(e) => e.preventDefault()}
-          >
-            <img className="ringCenterIcon" src="/logos/icon.png" alt="iPharmEG" />
-          </a>
+      <div className="ringRotator">
+        <div className="radialStage">
+
+          {apps.map((app, i) => {
+            const angle = (360 / total) * i;
+
+            return (
+              <div
+                key={app.key}
+                className="orbPosition"
+                style={{
+                  transform: `rotate(${angle}deg) translate(${radius}px)`
+                }}
+              >
+                <a
+                  href={app.url}
+                  className="orbContent"
+                  style={{ transform: `rotate(-${angle}deg)` }}
+                >
+                  <img src={app.icon} alt={app.name} />
+                  <span className="orbLabel">{app.name}</span>
+                </a>
+              </div>
+            );
+          })}
+
+          <div className="ringCenter">
+            <img src="/assets/ring/ipharmegy-center-soft.png" alt="iPharmEGY"/>
+          </div>
+
         </div>
       </div>
+
     </div>
   );
 }
