@@ -1,79 +1,79 @@
 ﻿import "./App.css";
 
-function HexaRingLeft(){
-  const apps = [
-    { key:"inventory", name:"Inventory", url:"https://inventory.ipharmegy.com" },
-    { key:"pos",       name:"POS",       url:"https://pos.ipharmegy.com" },
-    { key:"portal",    name:"Portal",    url:"https://portal.ipharmegy.com" },
-    { key:"academy",   name:"Academy",   url:"https://academy.ipharmegy.com" },
-    { key:"alnour",    name:"AlNour",    url:"https://alnour.ipharmegy.com" },
-    { key:"cloud",     name:"Cloud",     url:"https://cloud.ipharmegy.com" }
-  ];
+const tiles = [
+  { title: "Admin",      desc: "Identity  RBAC  Policies  Audit",   href: "https://admin.ipharmegy.com",     tag: "BRAIN" },
+  { title: "Inventory",  desc: "Stock  Expiry  Batches  Warehouses", href: "https://inventory.ipharmegy.com", tag: "MEMORY" },
+  { title: "POS",        desc: "Sales  Invoices  Customers",          href: "https://pos.ipharmegy.com",       tag: "PULSE" },
+  { title: "Cloud",      desc: "Sync  CDN  Deployments",              href: "https://cloud.ipharmegy.com",     tag: "NETWORK" },
+  { title: "Academy",    desc: "Training  SOP  Knowledge",            href: "https://academy.ipharmegy.com",   tag: "SKILLS" },
+  { title: "AlNour",     desc: "Customer Space",                        href: "https://alnour.ipharmegy.com",    tag: "CLIENT" },
+];
 
-  const total = apps.length;
-  const radius = 220;
-
+function Card({ t }) {
   return (
-    <div className="hexaLeftStage">
-      <div className="hexaRotator">
-        <div className="hexaStage">
+    <a className="tile" href={t.href} target="_blank" rel="noreferrer">
+      <div className="tileTop">
+        <div className="tileTitle">{t.title}</div>
+        <div className="tileTag">{t.tag}</div>
+      </div>
+      <div className="tileDesc">{t.desc}</div>
+      <div className="tileGo">Open </div>
+    </a>
+  );
+}
 
-          {/* spectrum ring bridge */}
-          <div className="hexaBridge" />
+export default function App() {
+  return (
+    <div className="page">
+      <header className="topbar">
+        <div className="brand">
+          <div className="brandMark">iPharmEGY</div>
+          <div className="brandSub">PORTAL  Control Center</div>
+        </div>
 
-          {apps.map((app, i) => {
-            const angle = (360 / total) * i;
-            return (
-              <div
-                key={app.key}
-                className="hexaOrbPos"
-                style={{ transform: `rotate(${angle}deg) translate(${radius}px)` }}
-              >
-                <a
-                  href={app.url}
-                  className="hexaOrb"
-                  style={{ transform: `rotate(-${angle}deg)` }}
-                  title={app.name}
-                >
-                  <span className="hexaOrbText">{app.name}</span>
-                </a>
-              </div>
-            );
-          })}
+        <div className="topActions">
+          <a className="link" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Landing</a>
+          <a className="link" href="https://portal.ipharmegy.com">Refresh</a>
+        </div>
+      </header>
 
-          <div className="hexaCenter">
-            <div className="hexaCenterTitle">iPharmEGY</div>
-            <div className="hexaCenterSub">PORTAL</div>
+      <main className="content">
+        <section className="hero">
+          <div className="heroTitle">System Dashboard</div>
+          <div className="heroText">
+            One sovereign system. Six vertices. This is the operational cockpit  not the landing page.
+          </div>
+        </section>
+
+        <section className="grid">
+          {tiles.map((t) => <Card key={t.title} t={t} />)}
+        </section>
+
+        <section className="status">
+          <div className="statusBox">
+            <div className="statusTitle">Quick Status</div>
+            <div className="statusRow"><span className="dot ok" /> DNS / Domains</div>
+            <div className="statusRow"><span className="dot ok" /> Cloudflare Pages</div>
+            <div className="statusRow"><span className="dot ok" /> SSL (Edge)</div>
+            <div className="statusHint">Tip: later we can wire real health checks + notifications.</div>
           </div>
 
-        </div>
-      </div>
-    </div>
-  );
-}
+          <div className="statusBox">
+            <div className="statusTitle">Operations</div>
+            <div className="ops">
+              <a className="btn" href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare</a>
+              <a className="btn" href="https://github.com/iPharmEGYOfficial" target="_blank" rel="noreferrer">GitHub Org</a>
+              <a className="btn" href="https://portal.ipharmegy.com">Portal</a>
+            </div>
+            <div className="statusHint">Portal design stays dashboard-only. Landing stays in ipharmegy-home.</div>
+          </div>
+        </section>
+      </main>
 
-function SignatureRight(){
-  return (
-    <div className="sigRightStage">
-      <img
-        className="sigImg"
-        src="/assets/ring/signatureMark.png"
-        alt="Haitham Osama Abdelghaffar"
-      />
-    </div>
-  );
-}
-
-export default function App(){
-  return (
-    <div className="portalSplit">
-      <section className="portalLeft">
-        <HexaRingLeft />
-      </section>
-
-      <section className="portalRight">
-        <SignatureRight />
-      </section>
+      <footer className="footer">
+        <div>iPharmEGY  Edition 2026</div>
+        <div className="muted">Portal = dashboard / Home = landing</div>
+      </footer>
     </div>
   );
 }

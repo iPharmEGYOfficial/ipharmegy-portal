@@ -1,274 +1,133 @@
-﻿/* =====================================
-   iPharmEGY PORTAL  HEXA SPLIT (2026)
-   Left: HEXA Ring + Spectrum glow
-   Right: Signature mark image
-   Rotation: 26 min per full cycle (1560s)
-===================================== */
-
-:root{
-  --gold: rgba(255,215,0,.55);
-  --cyan: rgba(0,229,255,1);
-  --cyanSoft: rgba(0,229,255,.22);
-  --panel: rgba(255,255,255,.06);
-  --stroke: rgba(255,255,255,.12);
-  --text: rgba(255,255,255,.92);
+﻿:root{
+  --bg0:#05070a;
+  --bg1:#070b12;
+  --card:#0b1220cc;
+  --line:#1b2a44;
+  --text:#e7eefc;
+  --muted:#9db0d6;
+  --glow:#2aa6ff33;
 }
 
-html, body{ height:100%; }
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
 body{
   margin:0;
-  overflow:hidden;
-  background:#000;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 20% 20%, #0b1a2a 0%, transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, #081a1f 0%, transparent 55%),
+    radial-gradient(800px 600px at 50% 90%, #140b1f 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-/* Gold frame for full page */
-body::before{
-  content:"";
-  position:fixed;
-  inset:14px;
-  border-radius:18px;
-  border:1px solid var(--gold);
-  box-shadow:
-    0 0 26px rgba(255,215,0,.10),
-    inset 0 0 18px rgba(255,215,0,.08);
-  pointer-events:none;
-  z-index:9999;
+a{ color:inherit; text-decoration:none; }
+
+.page{ min-height:100vh; display:flex; flex-direction:column; }
+
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 22px;
+  border-bottom:1px solid var(--line);
+  background: linear-gradient(180deg, #0a1424cc, transparent);
+  backdrop-filter: blur(8px);
 }
 
-/* Background image */
-.portalSplit{
-  height:100vh;
-  width:100vw;
+.brandMark{ font-weight:800; letter-spacing:.5px; font-size:20px; }
+.brandSub{ color:var(--muted); font-size:12px; margin-top:2px; letter-spacing:.12em; }
+
+.topActions{ display:flex; gap:10px; }
+.link{
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#0b1322aa;
+}
+.link:hover{ box-shadow:0 0 0 3px var(--glow); }
+
+.content{ width:min(1200px, 92vw); margin:0 auto; padding:28px 0 34px; flex:1; }
+
+.hero{ margin-bottom:18px; }
+.heroTitle{ font-size:28px; font-weight:800; }
+.heroText{ margin-top:6px; color:var(--muted); max-width:720px; line-height:1.45; }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+@media (max-width: 980px){
+  .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+.tile{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px 14px 12px;
+  background: radial-gradient(800px 300px at 20% 0%, #0f2240aa, transparent 55%), var(--card);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.tile:hover{
+  transform: translateY(-2px);
+  border-color:#2b4b7a;
+  box-shadow: 0 10px 30px #00000066, 0 0 0 3px var(--glow);
+}
+
+.tileTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.tileTitle{ font-weight:800; font-size:16px; }
+.tileTag{
+  font-size:11px;
+  color:#b7ccff;
+  border:1px solid #2b4b7a;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#0a1a33aa;
+}
+
+.tileDesc{ margin-top:10px; color:var(--muted); line-height:1.4; min-height:40px; }
+.tileGo{ margin-top:12px; font-weight:700; color:#cfe6ff; }
+
+.status{
   display:grid;
   grid-template-columns: 1fr 1fr;
-  background-image: url("/assets/ring/bgSite.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position:relative;
+  gap:14px;
+  margin-top:16px;
 }
-
-.portalSplit::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle at 30% 50%,
-    rgba(0,0,0,.10),
-    rgba(0,0,0,.55) 65%,
-    rgba(0,0,0,.72));
-  pointer-events:none;
+@media (max-width: 900px){
+  .status{ grid-template-columns: 1fr; }
 }
+.statusBox{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background:#0b1220aa;
+}
+.statusTitle{ font-weight:800; margin-bottom:10px; }
+.statusRow{ display:flex; align-items:center; gap:10px; color:var(--muted); margin:7px 0; }
+.dot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+.ok{ background:#2bd67b; box-shadow:0 0 0 3px #2bd67b22; }
 
-.portalLeft, .portalRight{
-  position:relative;
-  z-index:1;
+.ops{ display:flex; gap:10px; flex-wrap:wrap; }
+.btn{
+  padding:9px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#0b1322aa;
+  font-weight:700;
+}
+.btn:hover{ box-shadow:0 0 0 3px var(--glow); }
+
+.footer{
+  border-top:1px solid var(--line);
+  padding:14px 22px;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  color:var(--muted);
+  background: linear-gradient(0deg, #0a1424cc, transparent);
 }
-
-/* ========= LEFT HEXA RING ========= */
-.hexaLeftStage{
-  width:min(640px, 92%);
-  height:min(640px, 92%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.hexaRotator{
-  animation: hexaSpin 1560s linear infinite; /* 26 minutes */
-  will-change: transform;
-}
-
-@keyframes hexaSpin{
-  from{ transform: rotate(0deg); }
-  to{ transform: rotate(360deg); }
-}
-
-.hexaStage{
-  position:relative;
-  width: 560px;
-  height: 560px;
-}
-
-/* Spectrum bridge ring (between vertices) */
-.hexaBridge{
-  position:absolute;
-  inset: 82px;
-  border-radius:50%;
-  background: conic-gradient(
-    from 0deg,
-    rgba(0,229,255,.50),
-    rgba(138,92,255,.40),
-    rgba(255,213,74,.40),
-    rgba(0,255,168,.38),
-    rgba(0,229,255,.50)
-  );
-  filter: blur(10px);
-  opacity:.55;
-
-  -webkit-mask: radial-gradient(circle, transparent 57%, #000 58%, #000 66%, transparent 67%);
-  mask: radial-gradient(circle, transparent 57%, #000 58%, #000 66%, transparent 67%);
-}
-
-/* Soft inner aura */
-.hexaStage::before{
-  content:"";
-  position:absolute;
-  inset: 0;
-  border-radius:50%;
-  background: radial-gradient(circle at center,
-    rgba(0,229,255,.10),
-    rgba(0,229,255,.04),
-    transparent 72%);
-  pointer-events:none;
-}
-
-/* Orb positioning */
-.hexaOrbPos{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform-origin: 0 0;
-}
-
-/* 3D orb */
-.hexaOrb{
-  width: 126px;
-  height: 126px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  position:relative;
-
-  background:
-    radial-gradient(circle at 28% 22%, rgba(255,255,255,.88), rgba(255,255,255,.28) 34%, rgba(0,0,0,.22) 72%),
-    radial-gradient(circle at 70% 82%, rgba(0,229,255,.16), transparent 55%),
-    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.20));
-
-  border: 1px solid rgba(255,255,255,.22);
-  backdrop-filter: blur(8px);
-
-  box-shadow:
-    inset 0 0 28px rgba(255,255,255,.16),
-    inset 0 -18px 26px rgba(0,0,0,.26),
-    0 18px 34px rgba(0,0,0,.40),
-    0 0 26px rgba(0,229,255,.18),
-    0 0 18px rgba(255,215,0,.10);
-
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-}
-
-/* specular highlight */
-.hexaOrb::before{
-  content:"";
-  position:absolute;
-  inset: 7px;
-  border-radius:50%;
-  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.60), rgba(255,255,255,.08) 45%, transparent 70%);
-  opacity:.85;
-  pointer-events:none;
-  mix-blend-mode: screen;
-}
-
-/* inner neon rim */
-.hexaOrb::after{
-  content:"";
-  position:absolute;
-  inset: 10px;
-  border-radius:50%;
-  border: 1px solid rgba(0,229,255,.22);
-  box-shadow: 0 0 14px rgba(0,229,255,.16);
-  pointer-events:none;
-}
-
-/* text inside orb - subtle glow only */
-.hexaOrbText{
-  font-family: "Segoe UI", system-ui, sans-serif;
-  font-weight: 900;
-  font-size: 14px;
-  letter-spacing: .9px;
-  color: var(--text);
-  text-shadow: 0 0 12px rgba(0,229,255,.16);
-  opacity: .98;
-}
-
-.hexaOrb:hover{
-  transform: scale(1.10);
-  border-color: rgba(0,229,255,.38);
-  box-shadow:
-    inset 0 0 34px rgba(255,255,255,.18),
-    inset 0 -20px 30px rgba(0,0,0,.28),
-    0 22px 40px rgba(0,0,0,.44),
-    0 0 34px rgba(0,229,255,.24),
-    0 0 22px rgba(255,215,0,.12);
-}
-
-/* center badge */
-.hexaCenter{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  width: 190px;
-  height: 190px;
-  border-radius:50%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  background: rgba(0,0,0,.12);
-  border: 1px solid rgba(255,255,255,.14);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 26px rgba(255,215,0,.10);
-}
-
-.hexaCenterTitle{
-  font-weight: 900;
-  font-size: 20px;
-  letter-spacing: 1.2px;
-  color:#fff;
-  text-shadow: 0 0 12px rgba(255,215,0,.18);
-}
-.hexaCenterSub{
-  margin-top:6px;
-  font-weight: 900;
-  font-size: 12px;
-  letter-spacing: 2px;
-  opacity:.86;
-  color:#dffcff;
-}
-
-/* ========= RIGHT SIGNATURE ========= */
-.sigRightStage{
-  width:min(860px, 92%);
-  height:min(560px, 86%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.sigImg{
-  width: 92%;
-  height: 92%;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 0 22px rgba(0,229,255,.14))
-    drop-shadow(0 0 18px rgba(255,215,0,.08));
-}
-
-/* Responsive: stack */
-@media (max-width: 1100px){
-  body{ overflow:auto; }
-  .portalSplit{
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    height:auto;
-    min-height:100vh;
-  }
-  .hexaStage{ width: 520px; height: 520px; }
-}
+.muted{ opacity:.85; }
