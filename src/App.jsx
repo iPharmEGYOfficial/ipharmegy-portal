@@ -1,79 +1,141 @@
 ﻿import "./App.css";
 
-const tiles = [
-  { title: "Admin",      desc: "Identity  RBAC  Policies  Audit",   href: "https://admin.ipharmegy.com",     tag: "BRAIN" },
-  { title: "Inventory",  desc: "Stock  Expiry  Batches  Warehouses", href: "https://inventory.ipharmegy.com", tag: "MEMORY" },
-  { title: "POS",        desc: "Sales  Invoices  Customers",          href: "https://pos.ipharmegy.com",       tag: "PULSE" },
-  { title: "Cloud",      desc: "Sync  CDN  Deployments",              href: "https://cloud.ipharmegy.com",     tag: "NETWORK" },
-  { title: "Academy",    desc: "Training  SOP  Knowledge",            href: "https://academy.ipharmegy.com",   tag: "SKILLS" },
-  { title: "AlNour",     desc: "Customer Space",                        href: "https://alnour.ipharmegy.com",    tag: "CLIENT" },
+const modules = [
+  { key: "portal",    title: "Portal",    desc: "Control center & launcher",         href: "https://portal.ipharmegy.com",    tag: "CORE" },
+  { key: "inventory", title: "Inventory", desc: "Stock  Expiry  Warehouses",       href: "https://inventory.ipharmegy.com", tag: "MEMORY" },
+  { key: "pos",       title: "POS",       desc: "Fast counter  Sales  Invoices",   href: "https://pos.ipharmegy.com",       tag: "PULSE" },
+  { key: "cloud",     title: "Cloud",     desc: "Access  Sync  Integrations",      href: "https://cloud.ipharmegy.com",     tag: "NETWORK" },
+  { key: "academy",   title: "Academy",   desc: "Training  SOP  Knowledge",        href: "https://academy.ipharmegy.com",   tag: "SKILLS" },
+  { key: "alnour",    title: "AlNour",    desc: "Customer space",                    href: "https://alnour.ipharmegy.com",    tag: "CLIENT" },
 ];
 
-function Card({ t }) {
+function ModuleCard({ m }) {
   return (
-    <a className="tile" href={t.href} target="_blank" rel="noreferrer">
-      <div className="tileTop">
-        <div className="tileTitle">{t.title}</div>
-        <div className="tileTag">{t.tag}</div>
+    <a className="moduleCard" href={m.href} target="_blank" rel="noreferrer">
+      <div className="moduleTop">
+        <div className="moduleTitle">{m.title}</div>
+        <div className="moduleTag">{m.tag}</div>
       </div>
-      <div className="tileDesc">{t.desc}</div>
-      <div className="tileGo">Open </div>
+      <div className="moduleDesc">{m.desc}</div>
+      <div className="moduleGo">Open</div>
     </a>
   );
 }
 
 export default function App() {
   return (
-    <div className="page">
-      <header className="topbar">
-        <div className="brand">
-          <div className="brandMark">iPharmEGY</div>
-          <div className="brandSub">PORTAL  Control Center</div>
+    <div className="shell">
+      <aside className="sidebar">
+        <div className="sbBrand">
+          <div className="sbLogo">iPharmEGY</div>
+          <div className="sbSub">PORTAL  Control Center</div>
         </div>
 
-        <div className="topActions">
-          <a className="link" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Landing</a>
-          <a className="link" href="https://portal.ipharmegy.com">Refresh</a>
-        </div>
-      </header>
+        <nav className="sbNav">
+          <a className="sbLink active" href="https://portal.ipharmegy.com">Dashboard</a>
+          <a className="sbLink" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Landing (Home)</a>
+          <a className="sbLink" href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare</a>
+          <a className="sbLink" href="https://github.com/iPharmEGYOfficial" target="_blank" rel="noreferrer">GitHub Org</a>
+        </nav>
 
-      <main className="content">
-        <section className="hero">
-          <div className="heroTitle">System Dashboard</div>
-          <div className="heroText">
-            One sovereign system. Six vertices. This is the operational cockpit  not the landing page.
+        <div className="sbFoot">
+          <div className="sbPill">Edition 2026</div>
+          <div className="sbHint">Access: Cloudflare Zero Trust</div>
+        </div>
+      </aside>
+
+      <main className="main">
+        <header className="topbar">
+          <div className="topLeft">
+            <div className="title">System Dashboard</div>
+            <div className="subtitle">Operational cockpit  enterprise launcher  unified security</div>
+          </div>
+
+          <div className="topRight">
+            <a className="topBtn" href="https://portal.ipharmegy.com">Refresh</a>
+            <a className="topBtn ghost" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Home</a>
+          </div>
+        </header>
+
+        <section className="kpis">
+          <div className="kpi">
+            <div className="kpiLabel">DNS</div>
+            <div className="kpiValue ok">Healthy</div>
+            <div className="kpiHint">Zone + records aligned</div>
+          </div>
+          <div className="kpi">
+            <div className="kpiLabel">Pages</div>
+            <div className="kpiValue ok">Deployed</div>
+            <div className="kpiHint">Auto build from GitHub</div>
+          </div>
+          <div className="kpi">
+            <div className="kpiLabel">Access</div>
+            <div className="kpiValue ok">Protected</div>
+            <div className="kpiHint">Zero Trust policies active</div>
+          </div>
+          <div className="kpi">
+            <div className="kpiLabel">Security</div>
+            <div className="kpiValue warn">Review</div>
+            <div className="kpiHint">Tighten policies per app</div>
           </div>
         </section>
 
-        <section className="grid">
-          {tiles.map((t) => <Card key={t.title} t={t} />)}
+        <section className="sectionHead">
+          <div className="sectionTitle">Modules</div>
+          <div className="sectionHint">Each module opens its subdomain workspace</div>
         </section>
 
-        <section className="status">
-          <div className="statusBox">
-            <div className="statusTitle">Quick Status</div>
-            <div className="statusRow"><span className="dot ok" /> DNS / Domains</div>
-            <div className="statusRow"><span className="dot ok" /> Cloudflare Pages</div>
-            <div className="statusRow"><span className="dot ok" /> SSL (Edge)</div>
-            <div className="statusHint">Tip: later we can wire real health checks + notifications.</div>
-          </div>
+        <section className="modules">
+          {modules.map(m => <ModuleCard key={m.key} m={m} />)}
+        </section>
 
-          <div className="statusBox">
-            <div className="statusTitle">Operations</div>
-            <div className="ops">
-              <a className="btn" href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare</a>
-              <a className="btn" href="https://github.com/iPharmEGYOfficial" target="_blank" rel="noreferrer">GitHub Org</a>
-              <a className="btn" href="https://portal.ipharmegy.com">Portal</a>
+        <section className="grid2">
+          <div className="panel">
+            <div className="panelTitle">Activity</div>
+            <div className="panelBody">
+              <div className="row">
+                <span className="dot ok" /> Latest deploys are live (Pages)
+              </div>
+              <div className="row">
+                <span className="dot ok" /> Custom domains connected
+              </div>
+              <div className="row">
+                <span className="dot warn" /> Next: per-app Access policies (admin@ipharmegy.com)
+              </div>
+              <div className="row mutedSm">
+                Tip: later we can add real-time health checks + incident banner.
+              </div>
             </div>
-            <div className="statusHint">Portal design stays dashboard-only. Landing stays in ipharmegy-home.</div>
+          </div>
+
+          <div className="panel">
+            <div className="panelTitle">System Status</div>
+            <div className="panelBody">
+              <div className="statusLine">
+                <div className="statusName">DNS / Domains</div>
+                <div className="statusBadge ok">OK</div>
+              </div>
+              <div className="statusLine">
+                <div className="statusName">Cloudflare Pages</div>
+                <div className="statusBadge ok">OK</div>
+              </div>
+              <div className="statusLine">
+                <div className="statusName">SSL (Edge)</div>
+                <div className="statusBadge ok">OK</div>
+              </div>
+              <div className="statusLine">
+                <div className="statusName">Access Policies</div>
+                <div className="statusBadge warn">Tuning</div>
+              </div>
+            </div>
           </div>
         </section>
-      </main>
 
-      <footer className="footer">
-        <div>iPharmEGY  Edition 2026</div>
-        <div className="muted">Portal = dashboard / Home = landing</div>
-      </footer>
+        <footer className="footer">
+          <div>iPharmEGY   Portal Control Center</div>
+          <div className="muted">Home = landing  Portal = operations  Access = security</div>
+        </footer>
+      </main>
     </div>
   );
 }
