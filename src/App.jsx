@@ -1,141 +1,159 @@
 ﻿import "./App.css";
 
-const modules = [
-  { key: "portal",    title: "Portal",    desc: "Control center & launcher",         href: "https://portal.ipharmegy.com",    tag: "CORE" },
-  { key: "inventory", title: "Inventory", desc: "Stock  Expiry  Warehouses",       href: "https://inventory.ipharmegy.com", tag: "MEMORY" },
-  { key: "pos",       title: "POS",       desc: "Fast counter  Sales  Invoices",   href: "https://pos.ipharmegy.com",       tag: "PULSE" },
-  { key: "cloud",     title: "Cloud",     desc: "Access  Sync  Integrations",      href: "https://cloud.ipharmegy.com",     tag: "NETWORK" },
-  { key: "academy",   title: "Academy",   desc: "Training  SOP  Knowledge",        href: "https://academy.ipharmegy.com",   tag: "SKILLS" },
-  { key: "alnour",    title: "AlNour",    desc: "Customer space",                    href: "https://alnour.ipharmegy.com",    tag: "CLIENT" },
+const apps = [
+  { key: "inventory", name: "Inventory",  desc: "Stock  Expiry  Warehouses", href: "https://inventory.ipharmegy.com", tag: "MEMORY",  tone: "cyan"  },
+  { key: "pos",       name: "POS",        desc: "Sales  Invoices  Counter",  href: "https://pos.ipharmegy.com",       tag: "PULSE",   tone: "blue"  },
+  { key: "cloud",     name: "Cloud",      desc: "Access  Sync  Storage",     href: "https://cloud.ipharmegy.com",     tag: "NETWORK", tone: "gold"  },
+  { key: "academy",   name: "Academy",    desc: "Training  SOP  Knowledge",  href: "https://academy.ipharmegy.com",   tag: "SKILLS",  tone: "violet"},
+  { key: "alnour",    name: "AlNour",     desc: "Customer  Offers  Space",   href: "https://alnour.ipharmegy.com",    tag: "CLIENT",  tone: "green" },
 ];
 
-function ModuleCard({ m }) {
+function Pill({ tone, children }) {
+  return <span className={`pill ${tone}`}>{children}</span>;
+}
+
+function StatusDot({ s }) {
+  return <span className={`dot ${s}`} aria-label={s} />;
+}
+
+function HexTile({ area, app }) {
   return (
-    <a className="moduleCard" href={m.href} target="_blank" rel="noreferrer">
-      <div className="moduleTop">
-        <div className="moduleTitle">{m.title}</div>
-        <div className="moduleTag">{m.tag}</div>
+    <a className={`hexTile ${app.tone}`} style={{ gridArea: area }} href={app.href} target="_blank" rel="noreferrer">
+      <div className="hexTop">
+        <div className="hexName">{app.name}</div>
+        <Pill tone={app.tone}>{app.tag}</Pill>
       </div>
-      <div className="moduleDesc">{m.desc}</div>
-      <div className="moduleGo">Open</div>
+
+      <div className="hexDesc">{app.desc}</div>
+
+      <div className="hexMeta">
+        <div className="mini">
+          <StatusDot s="ok" /> Access
+        </div>
+        <div className="mini">
+          <StatusDot s="ok" /> Pages
+        </div>
+        <div className="mini">
+          <StatusDot s="warn" /> Policy
+        </div>
+      </div>
+
+      <div className="hexGo">Open</div>
     </a>
   );
 }
 
 export default function App() {
   return (
-    <div className="shell">
-      <aside className="sidebar">
-        <div className="sbBrand">
-          <div className="sbLogo">iPharmEGY</div>
-          <div className="sbSub">PORTAL  Control Center</div>
+    <div className="portal">
+      <header className="topbar">
+        <div className="brand">
+          <div className="logo">iPharmEGY</div>
+          <div className="sub">PORTAL  HEXAGON CONTROL CENTER</div>
         </div>
 
-        <nav className="sbNav">
-          <a className="sbLink active" href="https://portal.ipharmegy.com">Dashboard</a>
-          <a className="sbLink" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Landing (Home)</a>
-          <a className="sbLink" href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare</a>
-          <a className="sbLink" href="https://github.com/iPharmEGYOfficial" target="_blank" rel="noreferrer">GitHub Org</a>
-        </nav>
-
-        <div className="sbFoot">
-          <div className="sbPill">Edition 2026</div>
-          <div className="sbHint">Access: Cloudflare Zero Trust</div>
+        <div className="topActions">
+          <a className="btn" href="https://portal.ipharmegy.com">Refresh</a>
+          <a className="btn ghost" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Home</a>
+          <a className="btn ghost" href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">Cloudflare</a>
+          <a className="btn ghost" href="https://github.com/iPharmEGYOfficial" target="_blank" rel="noreferrer">GitHub</a>
         </div>
-      </aside>
+      </header>
 
-      <main className="main">
-        <header className="topbar">
-          <div className="topLeft">
-            <div className="title">System Dashboard</div>
-            <div className="subtitle">Operational cockpit  enterprise launcher  unified security</div>
+      <section className="hero">
+        <div className="heroLeft">
+          <div className="hTitle">System Command Center</div>
+          <div className="hDesc">
+            One sovereign system. Six vertices. Portal is the operational cockpit  not the landing page.
           </div>
 
-          <div className="topRight">
-            <a className="topBtn" href="https://portal.ipharmegy.com">Refresh</a>
-            <a className="topBtn ghost" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Home</a>
-          </div>
-        </header>
-
-        <section className="kpis">
-          <div className="kpi">
-            <div className="kpiLabel">DNS</div>
-            <div className="kpiValue ok">Healthy</div>
-            <div className="kpiHint">Zone + records aligned</div>
-          </div>
-          <div className="kpi">
-            <div className="kpiLabel">Pages</div>
-            <div className="kpiValue ok">Deployed</div>
-            <div className="kpiHint">Auto build from GitHub</div>
-          </div>
-          <div className="kpi">
-            <div className="kpiLabel">Access</div>
-            <div className="kpiValue ok">Protected</div>
-            <div className="kpiHint">Zero Trust policies active</div>
-          </div>
-          <div className="kpi">
-            <div className="kpiLabel">Security</div>
-            <div className="kpiValue warn">Review</div>
-            <div className="kpiHint">Tighten policies per app</div>
-          </div>
-        </section>
-
-        <section className="sectionHead">
-          <div className="sectionTitle">Modules</div>
-          <div className="sectionHint">Each module opens its subdomain workspace</div>
-        </section>
-
-        <section className="modules">
-          {modules.map(m => <ModuleCard key={m.key} m={m} />)}
-        </section>
-
-        <section className="grid2">
-          <div className="panel">
-            <div className="panelTitle">Activity</div>
-            <div className="panelBody">
-              <div className="row">
-                <span className="dot ok" /> Latest deploys are live (Pages)
-              </div>
-              <div className="row">
-                <span className="dot ok" /> Custom domains connected
-              </div>
-              <div className="row">
-                <span className="dot warn" /> Next: per-app Access policies (admin@ipharmegy.com)
-              </div>
-              <div className="row mutedSm">
-                Tip: later we can add real-time health checks + incident banner.
-              </div>
+          <div className="kpis">
+            <div className="kpi">
+              <div className="kLabel">DNS</div>
+              <div className="kValue ok">Healthy</div>
+              <div className="kHint">Zone + records aligned</div>
+            </div>
+            <div className="kpi">
+              <div className="kLabel">PAGES</div>
+              <div className="kValue ok">Deployed</div>
+              <div className="kHint">Auto build from GitHub</div>
+            </div>
+            <div className="kpi">
+              <div className="kLabel">ACCESS</div>
+              <div className="kValue ok">Protected</div>
+              <div className="kHint">Cloudflare Zero Trust</div>
+            </div>
+            <div className="kpi">
+              <div className="kLabel">SECURITY</div>
+              <div className="kValue warn">Tuning</div>
+              <div className="kHint">Per-app policies (admin@ipharmegy.com)</div>
             </div>
           </div>
+        </div>
 
-          <div className="panel">
-            <div className="panelTitle">System Status</div>
-            <div className="panelBody">
-              <div className="statusLine">
-                <div className="statusName">DNS / Domains</div>
-                <div className="statusBadge ok">OK</div>
-              </div>
-              <div className="statusLine">
-                <div className="statusName">Cloudflare Pages</div>
-                <div className="statusBadge ok">OK</div>
-              </div>
-              <div className="statusLine">
-                <div className="statusName">SSL (Edge)</div>
-                <div className="statusBadge ok">OK</div>
-              </div>
-              <div className="statusLine">
-                <div className="statusName">Access Policies</div>
-                <div className="statusBadge warn">Tuning</div>
+        <div className="heroRight">
+          <div className="hexGrid" aria-label="Hexagon Control Center">
+            <HexTile area="tl" app={apps.find(a=>a.key==="academy")} />
+            <HexTile area="tr" app={apps.find(a=>a.key==="inventory")} />
+
+            <HexTile area="ml" app={apps.find(a=>a.key==="alnour")} />
+            <div className="core" style={{ gridArea: "c" }}>
+              <div className="coreRing" />
+              <div className="coreInner">
+                <div className="coreTitle">PORTAL</div>
+                <div className="coreSub">Control  Policies  Ops</div>
+
+                <div className="coreBadges">
+                  <span className="badge"><StatusDot s="ok" /> DNS</span>
+                  <span className="badge"><StatusDot s="ok" /> Pages</span>
+                  <span className="badge"><StatusDot s="ok" /> Access</span>
+                </div>
+
+                <div className="coreActions">
+                  <a className="coreBtn" href="https://portal.ipharmegy.com">Open Portal</a>
+                  <a className="coreBtn ghost" href="https://ipharmegy.com" target="_blank" rel="noreferrer">Landing</a>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+            <HexTile area="mr" app={apps.find(a=>a.key==="pos")} />
 
-        <footer className="footer">
-          <div>iPharmEGY   Portal Control Center</div>
-          <div className="muted">Home = landing  Portal = operations  Access = security</div>
-        </footer>
-      </main>
+            <HexTile area="bl" app={apps.find(a=>a.key==="cloud")} />
+            <div className="ghostTile" style={{ gridArea: "br" }}>
+              <div className="ghostTitle">Reserved</div>
+              <div className="ghostDesc">Future vertex / Integrations</div>
+            </div>
+
+            <div className="hexLines" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
+
+      <section className="lower">
+        <div className="panel">
+          <div className="pTitle">Operations</div>
+          <div className="pBody">
+            <div className="row"><StatusDot s="ok" /> Latest deploys are live (Pages)</div>
+            <div className="row"><StatusDot s="ok" /> Custom domains connected</div>
+            <div className="row"><StatusDot s="warn" /> Next: tighten Access per app (admin@ipharmegy.com)</div>
+            <div className="tip">Tip: later we can add real health checks + incident banner + notifications.</div>
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="pTitle">System Status</div>
+          <div className="pBody">
+            <div className="statLine"><div className="statName">DNS / Domains</div><span className="stat ok">OK</span></div>
+            <div className="statLine"><div className="statName">Cloudflare Pages</div><span className="stat ok">OK</span></div>
+            <div className="statLine"><div className="statName">SSL (Edge)</div><span className="stat ok">OK</span></div>
+            <div className="statLine"><div className="statName">Access Policies</div><span className="stat warn">Tuning</span></div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="fLeft">iPharmEGY  Portal Control Center</div>
+        <div className="fRight">Edition 2026  Home = landing  Portal = operations  Access = security</div>
+      </footer>
     </div>
   );
 }
